@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: iepjcr-api
+
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5433}/${DB_NAME:iepjcr}
+    username: ${DB_USER:iepjcr}
+    password: ${DB_PASSWORD:iepjcr123}
+
+  jpa:
+    hibernate:
+      ddl-auto: validate   # o schema é controlado pelo Flyway, não pelo Hibernate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+server:
+  port: ${PORT:8080}
+  servlet:
+    context-path: /api
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:troque-este-segredo-em-producao-para-uma-chave-forte}
+    expiracao-minutos: ${JWT_EXPIRACAO_MINUTOS:480}
+  cors:
+    origens-permitidas: ${CORS_ORIGENS:http://localhost:5173}
+  firebase:
+    credenciais-json: ${FIREBASE_CREDENTIALS_PATH:}
+
+logging:
+  level:
+    br.org.iepjcr: INFO
+    org.springframework.security: WARN

@@ -1,0 +1,7 @@
+# Perfil de desenvolvimento local: ative com --spring.profiles.active=dev
+spring:
+  jpa:
+    show-sql: true
+logging:
+  level:
+    br.org.iepjcr: DEBUG
